@@ -1,10 +1,18 @@
 "use client";
 import Image from "next/image";
-import PillNav from "@/components/landing-page/PillNav";
+
+const navItems = [
+  { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Our Training", href: "#training" },
+  { label: "Trainers", href: "#trainers" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Navbar() {
   return (
-    <nav className="w-full px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between absolute top-0 z-50 h-24">
+    <nav className="w-full px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between absolute top-0 z-50 h-24 bg-transparent backdrop-blur-md">
       {/* Left side: Main Logo */}
    
         <Image 
@@ -17,28 +25,19 @@ export default function Navbar() {
         />
      
 
-      {/* Middle: PillNav */}
-      <div className=" w-fit">
-        <PillNav
-          logo="/assets/icons/logo.svg"
-          logoAlt="Hexel Logo"
-          items={[
-            { label: "Home", href: "#" },
-            { label: "About", href: "#about" },
-            { label: "Our Training", href: "#training" },
-            { label: "Trainers", href: "#trainers" },
-            { label: "FAQ", href: "#faq" },
-            { label: "Contact", href: "#contact" },
-          ]}
-          activeHref="#"
-          ease="power2.easeOut"
-          baseColor="#004d41"
-          pillColor="#ffffff"
-          hoveredPillTextColor="#ffffff"
-          pillTextColor="#000000"
-          initialLoadAnimation={true}
-        />
-      </div>
+      {/* Middle: Simple Nav Menu */}
+      <ul className="hidden md:flex items-center gap-1 list-none m-0 p-1 rounded-full bg-[#004d41]">
+        {navItems.map((item) => (
+          <li key={item.href}>
+            <a
+              href={item.href}
+              className="inline-block px-5 py-2 rounded-full text-sm font-rubik font-semibold uppercase tracking-wide text-white no-underline transition-all duration-300 hover:bg-white hover:text-[#004d41]"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
 
       {/* Right side: Actions */}
       <div className="hidden lg:flex items-center gap-4 z-10">
