@@ -14,7 +14,7 @@ const Logo3D = dynamic(() => import("@/components/landing-page/Logo3D"), {
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full px-6 md:px-12 flex justify-between items-center lg:px-20 pt-10 pb-24 lg:pt-16 lg:pb-28 min-h-120 overflow-x-hidden h-screen ">
+    <section className="relative w-full px-6 md:px-12 flex justify-between items-center lg:px-20 pt-10 pb-24 lg:pt-16  min-h-120 overflow-x-hidden h-screen">
       <div className="flex flex-col lg:flex-row lg-min-150 items-center justify-between gap-14 lg:gap-12 w-full z-10">
         {/*  Left Content  */}
         <div className="min-w-175 flex flex-col gap-0 max-w-xl lg:max-w-2xl animate-fade-in-up lg:top-40">

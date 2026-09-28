@@ -12,7 +12,7 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <nav className="w-full px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between absolute top-0 z-50 h-24 bg-transparent backdrop-blur-md">
+    <nav className="w-full  px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between absolute top-0 z-50 h-24 bg-transparent backdrop-blur-md">
       {/* Left side: Main Logo */}
    
         <Image 

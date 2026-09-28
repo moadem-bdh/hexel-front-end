@@ -17,7 +17,7 @@ function LogoModel() {
 
   return (
     <group ref={groupRef}>
-      <primitive object={scene} scale={1.3} position={[0, -1.3, 0]} />
+      <primitive object={scene} scale={1.2} position={[0, -1.2, 0]} />
     </group>
   );
 }
