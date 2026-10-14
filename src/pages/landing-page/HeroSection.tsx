@@ -1,90 +1,106 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import TechText from "@/components/landing-page/TechText";
 import dynamic from "next/dynamic";
+import MotionButton from "@/components/landing-page/motion-button";
+import { ArrowRight } from "lucide-react";
 
 const Logo3D = dynamic(() => import("@/components/landing-page/Logo3D"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full min-h-100 lg:min-h-125 flex items-center justify-center">
-      <div className="w-16 h-16 border-4 border-[#004d41]/20 border-t-[#004d41] rounded-full animate-spin" />
+    <div className="flex h-full min-h-72 w-full items-center justify-center">
+      <div className="h-16 w-16 animate-spin rounded-full border-4 border-greenx/20 border-t-greenx" />
     </div>
   ),
 });
 
+function useHeroFontSize() {
+  const [size, setSize] = useState(160);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      setSize(w < 480 ? 72 : w < 640 ? 90 : w < 1024 ? 120 : 160);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return size;
+}
+
 export default function HeroSection() {
+  const fontSize = useHeroFontSize();
+
   return (
-    <section className="relative w-full px-6 md:px-12 flex justify-between items-center lg:px-20 pt-10 pb-24 lg:pt-16  min-h-120 overflow-x-hidden h-screen">
-      <div className="flex flex-col lg:flex-row lg-min-150 items-center justify-between gap-14 lg:gap-12 w-full z-10">
-        {/*  Left Content  */}
-        <div className="min-w-175 flex flex-col gap-0 max-w-xl lg:max-w-2xl animate-fade-in-up lg:top-40">
-          <div className="flex flex-col md:min-w-160 relative overflow-visible">
-            <div className="h-52 sm:h-60 md:h-72 lg:h-80 overflow-visible">
-              <TechText
-                text={"Master modern\nskills with HEXEL"}
-                fontWeight={700}
-                fontSize={160}
-                reveal={"letter"}
-                highlightText="HEXEL"
-                highlightColor="#000000"
-                dashLength={4}
-                dashGap={2}
-                specks={15}
-                fontFamily="Gilroy"
-                color="#004d41"
-                accentColor="#000000"
-                letterSpacing={-0.05}
-                reach={200}
-                softness={0.7}
-                strokeWidth={1.5}
-                speed={0.2}
-                lineStyle="dashed"
-                selection
-                draggable
-                labels={false}
-                sweep
-                textAlign="left"
-              />
-            </div>
+    <section className="relative flex h-screen max-h-200 w-full items-center overflow-x-clip overflow-y-visible px-6 py-10 md:px-12 lg:px-20 lg:py-16">
+      <div className="z-10 flex w-full flex-col items-center justify-between gap-10 lg:flex-row lg:gap-12">
+        {/* Left content */}
+        <div className="animate-fade-in-up flex w-full min-w-0 max-w-xl flex-col lg:max-w-2xl">
+          <div className="h-44 w-full overflow-visible sm:h-56 md:h-64 lg:h-72 xl:h-80">
+            <TechText
+              text={"Master modern\nskills with HEXEL"}
+              fontWeight={700}
+              fontSize={fontSize}
+              reveal={"letter"}
+              highlightText="HEXEL"
+              highlightColor="#000000"
+              dashLength={4}
+              dashGap={2}
+              specks={15}
+              fontFamily="Gilroy"
+              color="#004d41"
+              accentColor="#000000"
+              letterSpacing={-0.05}
+              reach={200}
+              softness={0.7}
+              strokeWidth={1.5}
+              speed={0.2}
+              lineStyle="dashed"
+              selection
+              draggable
+              labels={false}
+              sweep
+              textAlign="left"
+            />
           </div>
-          <p className="font-rubik font-semibold text-[#4c4c4c] text-sm md:text-xl max-w-150 -mt-14">
-Practical training programs designed to help you develop the skills, confidence, and experience needed to succeed in today's world.
+
+          <p className="-mt-6 max-w-xl font-rubik text-sm font-semibold leading-6 text-[#4c4c4c] md:-mt-10 md:text-xl md:leading-8 lg:-mt-14">
+            Practical training programs designed to help you develop the skills,
+            confidence, and experience needed to succeed in today&apos;s world.
           </p>
 
-          {/* Horizontal Line Divider */}
-          <hr className="w-80/100 border-2 border-[#000000]  my-6  rounded-full"  />
+          <hr className="my-6 w-full max-w-md rounded-full border-3 border-black" />
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-4 flex-wrap pt-1">
-            <a
+          <div className="flex flex-wrap items-center gap-4">
+            <MotionButton
+              label="Explore Programs"
               href="#training"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#004d41] text-white text-base font-rubik font-bold shadow-md"
-            >
-              <span className="flex items-center gap-2">
-                Explore Programs
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </span>
-            </a>
+              bgColor="#000"
+              color="#fff"
+              textColor="#fff"
+              textHoverColor="#000"
+              iconColor="#000"
+              classes="w-60 md:w-64"
+            />
 
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border-2 border-[#004d41] text-[#004d41] text-base font-rubik font-bold shadow-sm"
+              className="group relative inline-flex items-center gap-2 justify-between rounded-full border-2 border-greenx bg-greenx px-6 py-3 font-rubik text-base font-bold text-white transition-all duration-300 hover:bg-white hover:text-greenx active:scale-95 md:px-8 md:py-3.5"
             >
               Contact Us
+              <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
         </div>
 
-        {/* Right Content - 3D Logo */}
-        <div className="flex-1 w-full h-full overflow-visible lg:max-w-xl animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+        {/* Right content: 3D logo */}
+        <div
+          className="animate-fade-in-up relative h-[45svh] min-h-72 w-full overflow-visible sm:min-h-96 lg:h-auto lg:min-h-112 lg:max-w-xl lg:flex-1"
+          style={{ animationDelay: "0.3s" }}
+        >
           <Logo3D />
         </div>
       </div>

@@ -27,9 +27,9 @@ useGLTF.preload("/3d/logo-3d.glb");
 
 export default function Logo3D() {
   return (
-    <div className="w-full h-full overflow-visible min-h-100 lg:min-h-125 relative">
+    <div className="w-full h-full overflow-visible min-h-full  lg:min-h-125 relative">
       <Canvas
-        camera={{ position: [0, 1, 5], fov: 45 }}
+        camera={{ position: [0, 0, 5], fov: 45 }}
         style={{
           position: "absolute",
           top: "-20%",
@@ -53,13 +53,13 @@ export default function Logo3D() {
             scale={10}
             blur={2}
           />
-          <Environment preset="city" />
+          <Environment preset="night" />
         </Suspense>
 
         <OrbitControls
           enableZoom={false}
           enablePan={false}
-          autoRotate={false}
+          autoRotate={true}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 4}
         />

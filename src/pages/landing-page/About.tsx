@@ -1,95 +1,120 @@
 "use client";
 
-import React from "react";
+import { ContainerScroll } from "@/components/landing-page/container-scroll-animation";
+import Image from "next/image";
 
-const stats = [
-  { value: "500+", label: "Graduates Trained" },
-  { value: "95%", label: "Career Placement Rate" },
-  { value: "50+", label: "Hiring Partners" },
-  { value: "4.9/5", label: "Student Rating" },
+const LOGO = "/assets/icons/logo-color.svg";
+
+const aboutImages = [
+  "/assets/images/about-test-1.png",
+  "/assets/images/about-test-2.png",
+  "/assets/images/about-test-3.png",
+  "/assets/images/hero-image.png",
+  "/assets/images/about-test-3.png",
+  "/assets/images/about-test-1.png",
 ];
 
-const highlights = [
+const socialLinks = [
   {
-    title: "Practical Hands-on Learning",
-    description: "Build real-world products and software projects that build confidence and a standout portfolio.",
-    icon: (
-      <svg className="w-6 h-6 text-[#004d41]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
+    href: "https://instagram.com",
+    label: "Instagram",
+    icon: "/assets/icons/instagram.svg",
   },
   {
-    title: "Mentorship by Experts",
-    description: "Learn directly from experienced senior engineers, designers, and industry professionals.",
-    icon: (
-      <svg className="w-6 h-6 text-[#004d41]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>
-    ),
+    href: "https://linkedin.com",
+    label: "LinkedIn",
+    icon: "/assets/icons/linkedin.svg",
   },
+  { href: "https://x.com", label: "X", icon: "/assets/icons/x.svg" },
   {
-    title: "Career Acceleration",
-    description: "Comprehensive support from resume building and technical interview prep to job placement.",
-    icon: (
-      <svg className="w-6 h-6 text-[#004d41]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
+    href: "mailto:hello@hexel.com",
+    label: "Email HEXEL",
+    icon: "/assets/icons/facebook.svg",
   },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="w-full py-20 px-6 md:px-12 lg:px-20 relative z-10 bg-white">
-      <div className="max-w-6xl mx-auto flex flex-col gap-16">
-        {/* Header Content */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="max-w-2xl flex flex-col gap-4">
-            <span className="text-xs sm:text-sm font-rubik font-bold uppercase tracking-widest text-[#004d41] px-4 py-1.5 rounded-full bg-[#004d41]/10 w-fit">
-              About HEXEL
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-gilroy font-bold text-[#000000] leading-tight">
-              Bridging the gap between ambitious learners & high-impact tech careers.
-            </h2>
-          </div>
-          <p className="font-rubik text-base md:text-lg text-[#5e706a] max-w-xl">
-            HEXEL was founded with a clear mission: to provide practical, outcome-focused tech education designed for the modern digital economy. We empower students with high-demand skills, mentorship, and real project experience.
+    <section
+      id="about"
+      className="relative z-10 w-full overflow-hidden  px-6 py-10 md:px-10 lg:px-20"
+    >
+
+      <div className="relative z-10 flex flex-col items-center gap-10 lg:flex-row lg:justify-between lg:gap-16">
+        <div className="w-full max-w-2xl lg:max-w-200">
+          <ContainerScroll titleComponent={null}>
+            <div className="grid h-full w-full grid-cols-2 grid-rows-3 gap-2 p-2 md:grid-cols-3 md:grid-rows-2 md:gap-3 md:p-3">
+              {aboutImages.map((src, index) => (
+                <div
+                  key={`${src}-${index}`}
+                  className="relative overflow-hidden rounded-xl border-2 border-black"
+                >
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 320px, 50vw"
+                    className="object-cover"
+                    draggable={false}
+                  />
+                </div>
+              ))}
+            </div>
+          </ContainerScroll>
+        </div>
+
+        <div className="flex flex-col justify-center lg:-mt-20">
+          <p className="font-gilroy text-4xl font-extrabold uppercase tracking-[0.16em] text-greenx md:text-6xl">
+            About HEXEL
           </p>
-        </div>
+          <h2 className="mt-4 font-rubik text-2xl font-extrabold leading-[0.95] text-black md:text-4xl">
+            Learning should open doors.
+          </h2>
+          <h3 className="mt-5 font-rubik text-lg font-extrabold text-black md:text-xl">
+            Learn by building.
+          </h3>
+          <p className="mt-2 font-rubik text-base leading-7 text-black/75 md:text-lg">
+            HEXEL helps curious people turn modern skills into real momentum.
+            Our practical programs combine clear guidance, hands-on projects,
+            and focused feedback so every lesson becomes something useful you
+            can see, test, and share.
+          </p>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-y border-gray-100">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="flex flex-col gap-1 text-center md:text-left">
-              <span className="text-4xl md:text-5xl font-gilroy font-extrabold text-[#004d41]">
-                {stat.value}
-              </span>
-              <span className="font-rubik text-sm font-semibold text-[#5e706a]">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
+          <h3 className="mt-6 font-rubik text-lg font-extrabold text-black md:text-xl">
+            Grow with momentum.
+          </h3>
+          <p className="mt-2 font-rubik text-base leading-7 text-black/75 md:text-lg">
+            Whether you are starting fresh or sharpening your next advantage, we
+            meet you where you are and help you build what comes next. You leave
+            with stronger skills, a clearer direction, and work that proves how
+            far you have come.
+          </p>
 
-        {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {highlights.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-8 rounded-3xl bg-[#f8faf9] border border-[#004d41]/10 flex flex-col gap-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-[#004d41]/30"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-[#004d41]/10 flex items-center justify-center">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-gilroy font-bold text-[#000000]">
-                {item.title}
-              </h3>
-              <p className="font-rubik text-sm text-[#5e706a] leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          ))}
+          <div
+            className="mt-5 flex items-center gap-2"
+            aria-label="HEXEL social media links"
+          >
+            <hr className="mr-2 h-1 w-full rounded-full border-0 bg-black" />
+            {socialLinks.map(({ href, label, icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                aria-label={label}
+                title={label}
+                className="group flex min-h-12 min-w-12 items-center justify-center rounded-full border-[3px] border-black text-black transition-all hover:border-black hover:bg-black"
+              >
+                <Image
+                  src={icon}
+                  alt={label}
+                  width={22}
+                  height={22}
+                  className="h-5.5 w-5.5 object-contain transition-all group-hover:brightness-0 group-hover:invert"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
