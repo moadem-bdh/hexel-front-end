@@ -88,7 +88,7 @@ export default function HeroSection() {
 
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-2 justify-between rounded-full border-2 border-greenx bg-greenx px-6 py-3 font-rubik text-base font-bold text-white transition-all duration-300 hover:bg-white hover:text-greenx active:scale-95 md:px-8 md:py-3.5"
+              className="group relative inline-flex items-center gap-2 justify-between rounded-full border-2 border-greenx bg-greenx px-6 py-3 font-rubik text-base font-semibold tracking-tight text-white transition-all duration-300 hover:bg-white hover:text-greenx active:scale-95 md:px-8 md:py-3.5"
             >
               Contact Us
               <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
