@@ -1,13 +1,33 @@
 "use client";
 
-import { Suspense, useRef } from "react";
+import { Component, Suspense, useRef, type ReactNode } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, OrbitControls, Environment, ContactShadows } from "@react-three/drei";
 import type { Group } from "three";
 
+const MODEL_PATH = "/3d/logo-3d.glb";
+
+// Catch WebGL/Three.js crashes so they don't kill the whole page
+class Logo3DErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) return null; // silently hide if 3D fails
+    return this.props.children;
+  }
+}
+
 function LogoModel() {
   const groupRef = useRef<Group>(null);
-  const { scene } = useGLTF("/3d/logo-3d.glb");
+  const { scene } = useGLTF(MODEL_PATH);
 
   useFrame((_, delta) => {
     if (groupRef.current) {
@@ -22,11 +42,14 @@ function LogoModel() {
   );
 }
 
-// Preload the model
-useGLTF.preload("/3d/logo-3d.glb");
+// Preload only in browser
+if (typeof window !== "undefined") {
+  useGLTF.preload(MODEL_PATH);
+}
 
 export default function Logo3D() {
   return (
+    <Logo3DErrorBoundary>
     <div className="w-full h-full overflow-visible min-h-full  lg:min-h-125 relative">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
@@ -65,5 +88,6 @@ export default function Logo3D() {
         />
       </Canvas>
     </div>
+    </Logo3DErrorBoundary>
   );
 }
