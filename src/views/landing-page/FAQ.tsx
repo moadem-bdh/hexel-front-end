@@ -76,7 +76,7 @@ export default function FAQ() {
           </p>
 
           <AccordionWrapper>
-            <Accordion defaultValue={questions[0].question}>
+            <Accordion>
               {questions.map(({ question, answer }, i) => (
                 <AccordionItem key={question} value={question}>
                   <AccordionHeader index={i}>{question}</AccordionHeader>
