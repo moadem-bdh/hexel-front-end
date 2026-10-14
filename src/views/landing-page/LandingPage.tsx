@@ -1,8 +1,8 @@
 "use client";
-import HeroSection from "@/pages/landing-page/HeroSection";
-import OurDomains from "@/pages/landing-page/OurDomains";
-import About from "@/pages/landing-page/About";
-import Training from "@/pages/landing-page/Training";
+import HeroSection from "@/views/landing-page/HeroSection";
+import OurDomains from "@/views/landing-page/OurDomains";
+import About from "@/views/landing-page/About";
+import Training from "@/views/landing-page/Training";
 import FAQ from "./FAQ";
 import Particles from "@/components/landing-page/Particles";
 import ErosionTrail from "@/components/landing-page/background";
