@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const navItems = [
@@ -13,7 +13,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const open = false; // TODO: handle open/close state
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white/98">
@@ -22,7 +22,7 @@ export default function Navbar() {
         className="flex h-20 w-full items-center justify-between px-6 md:px-12 lg:px-20"
       >
         {/* Logo */}
-        <a href="#" aria-label="Hexel home" onClick={() => setOpen(false)}>
+        <a href="#" aria-label="Hexel home">
           <Image
             className="w-36 object-contain"
             src="/assets/icons/logo-long.svg"
@@ -48,20 +48,19 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop button */}
-        <a
-          href="#join"
-          className="hidden h-11 items-center rounded-full bg-greenx px-7 font-rubik text-sm font-bold text-white no-underline transition-colors duration-200 hover:bg-black lg:inline-flex"
+        <Link
+          href="/auth"
+          className="hidden h-11 z-10 cursor-pointer items-center rounded-full bg-greenx px-7 font-rubik text-sm font-bold text-white no-underline transition-colors duration-200 hover:bg-black lg:inline-flex"
         >
           Join Us
-        </a>
-
+        </Link>
+        
         {/* Hamburger */}
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
           className="flex h-11 w-11 items-center justify-center rounded-full text-black transition-colors hover:bg-black/5 lg:hidden"
         >
           {open ? <FiX size={26} /> : <FiMenu size={26} />}
@@ -79,7 +78,6 @@ export default function Navbar() {
               <li key={item.href} className="border-t border-black/10">
                 <a
                   href={item.href}
-                  onClick={() => setOpen(false)}
                   className="block py-4 font-rubik text-base font-bold uppercase tracking-wide text-black no-underline hover:text-greenx"
                 >
                   {item.label}
@@ -88,13 +86,12 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <a
-            href="#join"
-            onClick={() => setOpen(false)}
+          <Link
+            href="/auth"
             className="mt-2 flex h-12 items-center justify-center rounded-full bg-greenx font-rubik text-sm font-bold text-white no-underline"
           >
             Join Us
-          </a>
+          </Link>
         </div>
       )}
     </header>

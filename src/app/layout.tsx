@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/views/landing-page/Navbar";
-import Footer from "@/views/landing-page/Footer";
+import ErosionTrail from "@/components/landing-page/background";
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,9 +12,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <Footer />
+
+        <main className="flex-1 flex flex-col">
+                  {/* Topographic contour background — full page */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <ErosionTrail
+          className="h-full"
+          minorColor="rgba(0,0,0,0.06)"
+          majorColor="rgba(0,0,0,0.14)"
+          driftSpeed={Math.PI * 2 / 40}
+          showReadout={false}
+        />
+      </div>{children}</main>
       </body>
     </html>
   );

@@ -102,7 +102,7 @@ export function AccordionItem({
       className={cn(
         "overflow-hidden rounded-2xl border-2 border-zinc-700 bg-white transition-all duration-300 cursor-pointer",
         isActive
-          ? "bg-greenx/4 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.15)]"
+          ? " shadow-[0_8px_30px_-12px_rgba(0,0,0,0.15)]"
           : "hover:border-zinc-900",
         className,
       )}
@@ -183,7 +183,7 @@ export function AccordionPanel({
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ type: "spring", duration: 0.35, bounce: 0 }}
-          className="overflow-hidden"
+          className="overflow-hidden "
         >
           <p
             className={cn(

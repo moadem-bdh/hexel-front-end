@@ -7,7 +7,7 @@ import {
   AccordionPanel,
   AccordionWrapper,
 } from "@/components/landing-page/multi-accordion";
-import { StatsBento } from "@/components/landing-page/stats-bento";
+import FolderFloat from "@/components/landing-page/folder-float";
 
 const questions: {
   question: string;
@@ -40,17 +40,23 @@ const questions: {
   },
 ];
 
+const testimonials = [
+  "Got my first dev job",
+  "Best investment I made",
+  "Built a real portfolio",
+];
+
 export default function FAQ() {
-  const newLocal = "min-w-130 max-w-200 w-full";
+  const rightCol = "min-w-130 max-w-200 w-full";
   return (
     <section
       id="faq"
       aria-labelledby="faq-title"
-      className="relative  z-10 w-full overflow-hidden  px-6 py-10 md:px-10 lg:px-16 lg:py-14"
+      className="relative z-10 w-full px-6 py-10 md:px-10 lg:px-16 lg:py-14"
     >
       <div className="flex flex-row gap-8 justify-between items-start w-full">
         {/* left */}
-        <div className="w-full min-w-75 max-w-140 ">
+        <div className="w-full min-w-75 max-w-140">
           <p className="font-gilroy text-4xl font-extrabold uppercase tracking-[0.16em] text-greenx md:text-6xl">
             FAQ
           </p>
@@ -60,13 +66,53 @@ export default function FAQ() {
           >
             Questions before you start?
           </h2>
-          <div className="mt-8 w-full max-w-lg md:pr-10">
-            <StatsBento />
+          <div className="mt-10 min-w-75 max-w-140">
+            {/* pt-16 reserves room for the pills so they never touch the label above */}
+            <div className="relative px-2 z-50 flex w-full justify-between mt-16">
+              <FolderFloat
+                items={testimonials}
+                label="Testimonials"
+                trigger="hover"
+                physics
+                drift={0.25}
+                folderColor="#004d41"
+                frontColor="#003d33"
+                paperColor="#ffffff"
+                itemColor="#D1D5D3"
+                itemTextColor="#000000"
+                labelColor="#ffffff"
+                width={240}
+                height={170}
+                spread={180}
+                lift={8}
+                bounce={0.1}
+                closeOnSelect={false}
+              />
+              <FolderFloat
+                items={testimonials}
+                label="Testimonials"
+                trigger="hover"
+                physics
+                drift={0.25}
+                folderColor="#004d41"
+                frontColor="#003d33"
+                paperColor="#ffffff"
+                itemColor="#D1D5D3"
+                itemTextColor="#1a0a02"
+                labelColor="#ffffff"
+                width={260}
+                height={170}
+                spread={180}
+                lift={8}
+                bounce={0.1}
+                closeOnSelect={false}
+              />
+            </div>
           </div>
         </div>
 
         {/* right */}
-        <div className={newLocal}>
+        <div className={rightCol}>
           <p
             aria-live="polite"
             className="mb-3 mt-2 font-gilroy min-w-full text-xs font-extrabold uppercase tracking-[0.2em] text-black"

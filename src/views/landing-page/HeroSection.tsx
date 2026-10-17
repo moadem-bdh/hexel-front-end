@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import TechText from "@/components/landing-page/TechText";
 import dynamic from "next/dynamic";
 import MotionButton from "@/components/landing-page/motion-button";
 import { ArrowRight } from "lucide-react";
+import Particles from "@/components/landing-page/Particles";
 
 const Logo3D = dynamic(() => import("@/components/landing-page/Logo3D"), {
   ssr: false,
@@ -15,27 +15,25 @@ const Logo3D = dynamic(() => import("@/components/landing-page/Logo3D"), {
   ),
 });
 
-function useHeroFontSize() {
-  const [size, setSize] = useState(160);
-
-  useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth;
-      setSize(w < 480 ? 72 : w < 640 ? 90 : w < 1024 ? 120 : 160);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  return size;
-}
+const fontSize = 160; // TODO: handle responsive font size
 
 export default function HeroSection() {
-  const fontSize = useHeroFontSize();
-
   return (
     <section className="relative flex h-screen max-h-200 w-full items-center overflow-x-clip overflow-y-visible px-6 py-10 md:px-12 lg:px-20 lg:py-16">
+      {/* Particles layer */}
+      <div className="absolute inset-0 z-0 w-full h-screen">
+        <Particles
+          particleColors={["#004d41", "#000000"]}
+          particleCount={150}
+          particleSpread={10}
+          speed={0.2}
+          particleBaseSize={80}
+          moveParticlesOnHover={false}
+          alphaParticles={false}
+          disableRotation={false}
+          pixelRatio={1}
+        />
+      </div>
       <div className="z-10 flex w-full flex-col items-center justify-between gap-10 lg:flex-row lg:gap-12">
         {/* Left content */}
         <div className="animate-fade-in-up flex w-full min-w-0 max-w-xl flex-col lg:max-w-2xl">
